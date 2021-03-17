@@ -28,11 +28,19 @@ export const Chatbot = () => {
                     type='text'
                     value={transcript}
                 />
-                <button>Enter</button>
             </form>
 
+            {
+                /*
+                    Setting 'continuous: true' to 'continuous: false' 
+                    should allow for the start button to operate normally.
+
+                    3.17.21 - 'continuous: false' not working
+                */
+            }
+
             <div>
-                <button className="hidden" onLoad={SpeechRecognition.startListening({ continuous: true })}>Start</button>
+                <button className="hidden" onLoad={SpeechRecognition.startListening({ continuous: false })}>Start</button>
                 <button onClick={resetTranscript}>Reset</button>
             </div>
         </div>

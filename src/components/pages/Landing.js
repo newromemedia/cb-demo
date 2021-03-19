@@ -7,7 +7,7 @@ export const Landing = () => {
     return (
         <>
             <Header />
-            <Chatbot />
+            {/* <Chatbot /> */}
         </>
     )
 }

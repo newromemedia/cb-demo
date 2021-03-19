@@ -21,5 +21,5 @@ export const persistor = persistStore(store)
 // export const store = createStore(mainReducer, applyMiddleware(thunk, logger));
 
 export {
-  changePathView
+  
 } from './actions'

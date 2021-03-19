@@ -1,8 +1,12 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setComponentView } from '../../store/actions';
 
 export const Chatbot = () => {
-    let voiceOverOne = new SpeechSynthesisUtterance("Hello, World!");
+    const { push } = useHistory();
+    const dispatch = useDispatch();
 
     const commands = [
         {
@@ -10,10 +14,45 @@ export const Chatbot = () => {
             callback: ({ resetTranscript }) => resetTranscript()
         },
         {
-            command: 'say hi',
-            callback: () => window.speechSynthesis.speak(voiceOverOne)
+            command: 'say hello',
+            callback: () => voiceOverOne()
+        },
+        {
+            command: 'go to login',
+            callback: () => push('/dashboard')
+        },
+        {
+            command: 'go home',
+            callback: () => push('/')
+        },
+        {
+            command: 'component login',
+            callback: () => test1()
+        },
+        {
+            command: 'component sign up',
+            callback: () => test2()
         }
+
     ]
+
+    let vo1;
+    let vo2;
+
+    const voiceOverOne = () => {
+        vo1 = new SpeechSynthesisUtterance("Hello, World!");
+        setTimeout(() => {
+            window.speechSynthesis.speak(vo1)
+        }, 1000);
+    }
+
+    const test1 = () => {
+        dispatch(setComponentView('login'))
+    }
+
+    const test2 = () => {
+        dispatch(setComponentView('signup'))
+    }
 
     let { transcript, resetTranscript } = useSpeechRecognition({ commands })
     
@@ -23,21 +62,14 @@ export const Chatbot = () => {
 
     return (
         <div className="voice__bot__container">
+
+            {/* All you need to say anything in the world */}
             <form className="voice__bot">
                 <input
-                    type='text'
+                    type='hidden'
                     value={transcript}
                 />
             </form>
-
-            {
-                /*
-                    Setting 'continuous: true' to 'continuous: false' 
-                    should allow for the start button to operate normally.
-
-                    3.17.21 - 'continuous: false' not working
-                */
-            }
 
             <div>
                 <button className="hidden" onLoad={SpeechRecognition.startListening({ continuous: false })}>Start</button>

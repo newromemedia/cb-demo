@@ -1,0 +1,39 @@
+.header {
+    width: 100%;
+}
+
+// the container is the actual logo width
+.logo__container {
+    width: 250px;
+    height: 10vh;
+}
+
+.logo__img {
+    position: relative;
+    top: 50px;
+    left: -50px;
+}
+
+.search__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 1.25% auto;
+
+    input {
+        width: 800px;
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 33%;
+
+    button {
+        width: 100px;
+        height: 35px;
+    }
+}

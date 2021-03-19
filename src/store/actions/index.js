@@ -20,5 +20,4 @@ export {
     setPageView,
     setComponentView,
     addCompToView,
-    changePathView
 } from './viewsActions';

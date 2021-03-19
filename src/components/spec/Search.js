@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { changePathView } from '../../store';
 
 const form = {
@@ -8,7 +8,7 @@ const form = {
 
 export const Search = () => {
     const [formValue, setFormValue] = useState(form);
-    const dispatch = useDispatch();
+    const { push } = useHistory();
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -17,22 +17,20 @@ export const Search = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(changePathView(formValue.input))
+        push(formValue.input)
     }
 
     return (
-        <div className='main__search__container'>
-            <form className='main__search'>
-                <label htmlFor='input'>
-                    <input
-                        name='input'
-                        type='text'
-                        onChange={handleChange}
-                        value={formValue.input}
-                    />
-                    <button onClick={handleSubmit}>Submit</button>
-                </label>
-            </form>
-        </div>
+        <form className='main__search'>
+            <label htmlFor='input'>
+                <input
+                    name='input'
+                    type='text'
+                    onChange={handleChange}
+                    value={formValue.input}
+                />
+                <button onClick={handleSubmit}>Submit</button>
+            </label>
+        </form>
     )
 }

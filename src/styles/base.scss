@@ -2,8 +2,12 @@ body {
     box-sizing: border-box;
 }
 
-.voice__bot__container, .voice__bot {
+.header, .main__search, .voice__bot__container, .voice__bot, .form, .logo__container {
     display: flex;
+}
+
+.voice__bot__container, .form {
+    flex-direction: column;
 }
 
 .voice__bot__container {

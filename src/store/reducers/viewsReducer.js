@@ -9,9 +9,6 @@ import {
 const initialState = {
     page: 'landing',
     comp: 'search',
-    comps: [{
-
-    }],
     stage: 1,
     path: window.location.pathname
 }
@@ -27,19 +24,6 @@ export const viewsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 comp: action.payload
-            }
-        case ADD_COMPONENT_S:
-            return {
-                ...state,
-                comps: [
-                    ...state,
-                    action.payload
-                ]
-            }
-        case RESET_COMPONENTS:
-            return {
-                ...state,
-                comps: [{}]
             }
         case CHANGE_PATH:
             return {
